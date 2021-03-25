@@ -7,7 +7,7 @@ echo "-------------------"
 
 cd "./fabric-samples"
 
-chmo +x ./bootstrap.sh
+chmod +x ./bootstrap.sh
 ./bootstrap.sh
 
 
