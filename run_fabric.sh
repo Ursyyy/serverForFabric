@@ -7,9 +7,10 @@ echo "-------------------"
 
 cd "./fabric-samples"
 
+if ! [ -d /bin ]; then
 chmod +x ./bootstrap.sh
 ./bootstrap.sh
-
+fi
 
 cd "./commercial-paper"
 
@@ -32,7 +33,7 @@ export PACKAGE_ID="cp_0:ddca913c004eb34f36dfb0b4c0bcc6d4afc1fa823520bb5966a3bfcf
 peer lifecycle chaincode approveformyorg --orderer localhost:7050 --ordererTLSHostnameOverride orderer.example.com --channelID mychannel --name papercontract -v 0 --package-id $PACKAGE_ID --sequence 1 --tls --cafile $ORDERER_CA
 cd "./application"
 npm i
-node enrollUser.js
+#node enrollUser.js
 echo "Finished"
 echo "Settings chaincode for digibank"
 echo "-------------------------------"
@@ -53,7 +54,7 @@ peer lifecycle chaincode commit -o localhost:7050 --ordererTLSHostnameOverride o
 
 cd "./application"
 npm i
-node enrollUser.js
+#node enrollUser.js
 
 echo "Finished"
 
