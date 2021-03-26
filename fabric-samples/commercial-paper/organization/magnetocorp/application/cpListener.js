@@ -68,7 +68,7 @@ module.exports = async function main(PATH) {
             await new Promise(resolve => setTimeout(resolve, 5000));
             break;
         }
-        console.log(res)
+        //console.log(res)
         gateway.disconnect();
         return res
     }
