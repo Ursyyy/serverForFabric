@@ -11,7 +11,8 @@ const PATH_TO_ORG_MAG = config["path_to_mag"],
 const History = require(PATH_TO_ORG_MAG + 'cpListener'),
     Issue = require(PATH_TO_ORG_MAG + 'issue'),
     Redeem = require(PATH_TO_ORG_DIG + 'redeem'),
-    Buy = require(PATH_TO_ORG_DIG + 'buy')
+    Buy = require(PATH_TO_ORG_DIG + 'buy'),
+    Query = require(PATH_TO_ORG_DIG + 'queryapp')
 
 module.exports = app => {
     app.route('/getPaper').get(upload.fields([]), (req, resp) => {
@@ -37,6 +38,11 @@ module.exports = app => {
             console.log(err)
             resp.send({'error': err})
         })
+    })
+
+    app.route("/queryapp").get((req, resp) => {
+        Query(PATH_TO_ORG_DIG).then(arg => resp.send({'query': arg}))
+        .catch( err => resp.send({'error': err}))
     })
 
     app.route('/issuePaper').post(upload.fields([]), (req, resp) =>{

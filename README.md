@@ -62,19 +62,6 @@ Once the paper is issued by Magnetocorp, Digibank can buy it. To do this, you ne
 ```
 corresponding to a successful paper purchase, or an error.
 
-
-### Redeem a paper
-
-After the purchase of the paper by digibank, the paper should be redeemed. To do this, you need to send a post-request to the address `localhost:PING/redeemPaper`, then you can get a response object or an error
-```
-
-"redeem": [
-        "Process redeem transaction response.{\"class\":\"org.papernet.commercialpaper\",\"currentState\":4,\"faceValue\":5000000,\"issueDateTime\":\"2020-05-31\",\"issuer\":\"MagnetoCorp\",\"maturityDateTime\":\"2020-11-30\",\"mspid\":\"Org2MSP\",\"owner\":\"MagnetoCorp\",\"paperNumber\":\"00001\",\"redeemDateTime\":\"2020-11-30\"}",
-        "MagnetoCorp commercial paper : 00001 successfully redeemed with MagnetoCorp"
-    ]
-```
-
-
 ### Transaction history 
 
 To get a list of all securities transactions, you need to use a GET-request to `localhost:PING/getPaper`. In response, you will receive an object that stores a description of the transactions that have occurred.
@@ -111,5 +98,22 @@ To get a list of all securities transactions, you need to use a GET-request to `
         },
         {
         .....
+```
+
+#### Optional
+##### Query 
+
+
+After purchasing the paper, you can also send a get-request to the address `localhost:PING/queryapp` and get an additional information
+
+### Redeem a paper
+
+After the purchase of the paper by digibank, the paper should be redeemed. To do this, you need to send a post-request to the address `localhost:PING/redeemPaper`, then you can get a response object or an error
+```
+
+"redeem": [
+        "Process redeem transaction response.{\"class\":\"org.papernet.commercialpaper\",\"currentState\":4,\"faceValue\":5000000,\"issueDateTime\":\"2020-05-31\",\"issuer\":\"MagnetoCorp\",\"maturityDateTime\":\"2020-11-30\",\"mspid\":\"Org2MSP\",\"owner\":\"MagnetoCorp\",\"paperNumber\":\"00001\",\"redeemDateTime\":\"2020-11-30\"}",
+        "MagnetoCorp commercial paper : 00001 successfully redeemed with MagnetoCorp"
+    ]
 ```
 
