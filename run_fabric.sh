@@ -7,7 +7,7 @@ echo "-------------------"
 
 cd "./fabric-samples"
 
-if ! [ -d /bin ]; then
+if ! [ -d ./bin ]; then
 chmod +x ./bootstrap.sh
 ./bootstrap.sh
 fi
