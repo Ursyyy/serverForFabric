@@ -32,7 +32,7 @@ module.exports = async function main(PATH) {
 
   // A gateway defines the peers used to access Fabric networks
   const gateway = new Gateway();
-
+  let res = []
   // Main try/catch block
   try {
         const userName = 'balaji';
@@ -45,25 +45,15 @@ module.exports = async function main(PATH) {
       wallet: wallet,
       discovery: { enabled:true, asLocalhost: true }
     };
-    console.log('Connect to Fabric gateway.');
-
     await gateway.connect(connectionProfile, connectionOptions);
-    console.log('Use network channel: mychannel.');
-
     const network = await gateway.getNetwork('mychannel');
-    console.log('Use org.papernet.commercialpaper smart contract.');
-
     const contract = await network.getContract('papercontract', 'org.papernet.commercialpaper');
-    console.log('Submit commercial paper redeem transaction.');
-
     const redeemResponse = await contract.submitTransaction('redeem', 'MagnetoCorp', '00001', 'DigiBank', 'Org2MSP', '2020-11-30');
-    console.log('Process redeem transaction response.');
+    res.push('Process redeem transaction response.' + redeemResponse);
 
     let paper = CommercialPaper.fromBuffer(redeemResponse);
 
-    console.log(`${paper.issuer} commercial paper : ${paper.paperNumber} successfully redeemed with ${paper.owner}`);
-
-    console.log('Transaction complete.');
+    res.push(`${paper.issuer} commercial paper : ${paper.paperNumber} successfully redeemed with ${paper.owner}`);
 
   } catch (error) {
 
@@ -72,10 +62,8 @@ module.exports = async function main(PATH) {
 
   } finally {
 
-    // Disconnect from the gateway
-    console.log('Disconnect from Fabric gateway.')
     gateway.disconnect();
-
+    return res
   }
 }
 // main().then(() => {
