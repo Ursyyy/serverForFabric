@@ -25,6 +25,13 @@ After which you can start the node server and then server will be ready to work
 node server
 ```
 
+## Stop server
+
+In the project folder run the command
+```
+./stop_fabric.sh
+```
+
 ***
 
 # API commands
